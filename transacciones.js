@@ -38,17 +38,13 @@ ejecutarBusqueda=function(){
     if(cuentaEncontrada==null){
         alert("NUMERO DE CUENTA NO EXISTE");
     }else{
-       mostarInfo();
+        mostrarTexto("txtNumeroCuentaExistente",cuentaEncontrada.numeroCuenta);
+        mostrarTexto("txtNombreCuenta",cuentaEncontrada.nombre+" "+cuentaEncontrada.apellido);
+        mostrarTexto("txtCedulaCuenta",cuentaEncontrada.cedula);
+        mostrarTexto("txtSaldoCuenta",cuentaEncontrada.saldo);
     }
     habilitarComponente("btnDepositar");
     habilitarComponente("btnRetirar");
-}
-
-mostarInfo=function(){
-    mostrarTextoEnCaja("txtNumeroCuentaExistente",cuentaEncontrada.numeroCuenta);
-    mostrarTextoEnCaja("txtNombreCuenta",cuentaEncontrada.nombre+" "+cuentaEncontrada.apellido);
-    mostrarTextoEnCaja("txtCedulaCuenta",cuentaEncontrada.cedula);
-    mostrarTextoEnCaja("txtSaldoCuenta",cuentaEncontrada.saldo);
 }
 
 depositar=function(numeroCuenta,monto){
@@ -66,7 +62,11 @@ ejecutarDeposito=function(){
     let resultado=depositar(numeroCuenta,monto);
     if(resultado){
         alert("TRANSACCION EXITOSA");
-        mostrarInfo();
+        let cuentaActualizada=buscarCuenta(numeroCuenta);
+        mostrarTexto("txtNumeroCuentaExistente",cuentaActualizada.numeroCuenta);
+        mostrarTexto("txtNombreCuenta",cuentaActualizada.nombre+" "+cuentaActualizada.apellido);
+        mostrarTexto("txtCedulaCuenta",cuentaActualizada.cedula);
+        mostrarTexto("txtSaldoCuenta",cuentaActualizada.saldo);
     }
 }
 
@@ -89,6 +89,10 @@ ejecutarRetiro=function(){
     let resultado=retirar(numeroCuenta,monto);
     if(resultado){
         alert("TRANSACCION EXITOSA");
-        mostrarInfo();
+        let cuentaActualizada=buscarCuenta(numeroCuenta);
+        mostrarTexto("txtNumeroCuentaExistente",cuentaActualizada.numeroCuenta);
+        mostrarTexto("txtNombreCuenta",cuentaActualizada.nombre+" "+cuentaActualizada.apellido);
+        mostrarTexto("txtCedulaCuenta",cuentaActualizada.cedula);
+        mostrarTexto("txtSaldoCuenta",cuentaActualizada.saldo);
     } 
 }
