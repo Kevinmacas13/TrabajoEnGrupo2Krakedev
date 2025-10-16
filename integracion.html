@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <link href="banco.css" rel="stylesheet" />
     <script src="integracion.js"></script>
     <script src="utilitarios.js"></script>
 </head>
-
-<body onload="cargar();">
+<body onload="cargarCuenta();">
     <div class="principal">
         <div class="menu">
             <div class="contenedorLogo">
                 <img src="./imagenes/logoKrakeDev.png" width="80%" />
             </div>
             <div class="contenedorBotones">
-                <input type="button" value="CUENTAS" class="boton" />
-                <input type="button" value="TRANSACCIONES" class="boton" />
-                <input type="button" value="MOVIMIENTOS" class="boton" />
+                <input type="button" value="CUENTAS" class="boton" onclick="cargarCuenta();"/>
+                <input type="button" value="TRANSACCIONES" class="boton" onclick="cargarTransacciones();"/>
+                <input type="button" value="MOVIMIENTOS" class="boton" onclick="cargarMovimientos();"/>
             </div>
             <div class="contenedorInfoGrupo">
                 <div>INTEGRANTE 1: Hancel Espin</div>
@@ -24,6 +22,7 @@
                 <div>INTEGRANTE 3: Kevin Macas</div>
             </div>
         </div>
+        
         <div class="contenido" id="divCuentas">
             <div class="superior">
                 <div class="titulo">CUENTAS</div>
@@ -33,7 +32,7 @@
                         <input type="text" class="caja" id="txtNumeroCuenta"/>
                     </div>
                 </div>
-                 <div class="contenedorTexto">
+                <div class="contenedorTexto">
                     <div class="etiquetaTexto">NUMERO DE CEDULA</div>
                     <div class="cajaTexto">
                         <input type="text" class="caja" id="txtCedula" />
@@ -55,13 +54,11 @@
                     <input type="button" value="GUARDAR" onclick="agregar();"/>
                 </div>
             </div>
-
-          <div class="inferior" id="tablaResumen">
-                
+            <div class="inferior" id="tablaResumen">
+              
             </div>
-
         </div>
-         </div>
+        
         <div class="contenido" id="divTransacciones">
             <div class="superior">
                 <div class="titulo">TRANSACCIONES</div>
@@ -83,20 +80,18 @@
                 <div class="contenedorAcciones">
                     <input type="button" value="DEPOSITAR" id="btnDepositar" onclick="ejecutarDeposito();" />
                     <input type="button" value="RETIRAR" id="btnRetirar" onclick="ejecutarRetiro();"/>
-                    <br>
-                    
                 </div>
-                    <div class="infoCuenta">
-                        <br>
-                        <div id="txtNumeroCuentaExistente"></div>
-                        <div id="txtNombreCuenta"></div>
-                        <div id="txtCedulaCuenta"></div>
-                        <div id="txtSaldoCuenta"></div>
-                    </div>
+                <div class="infoCuenta">
+                    <br>
+                    <div id="txtNumeroCuentaExistente"></div>
+                    <div id="txtNombreCuenta"></div>
+                    <div id="txtCedulaCuenta"></div>
+                    <div id="txtSaldoCuenta"></div>
+                </div>
             </div>
         </div>
+        
         <div class="contenido" id="divMovimientos">
-          
             <div class="inferior">
                 <div class="titulo">MOVIMIENTOS</div>
                 <div class="contenedorTexto">
@@ -112,9 +107,7 @@
                     TABLA
                 </div>
             </div>
-
         </div>
     </div>
 </body>
-
 </html>

@@ -15,9 +15,14 @@ body{
     
 }
 .contenido{
-    display: flex;
+    display: none;
     flex:5;
-   
+    align-items: center;
+    flex-direction: column;
+}
+#divTransacciones, #divMovimientos {
+    display: none;
+    flex:5;
     align-items: center;
     flex-direction: column;
 }

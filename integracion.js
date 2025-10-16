@@ -13,7 +13,7 @@ movimientos = [
     { numeroCuenta: "02345211", monto: 12.0, tipo: "D" },
 ]
 
-cargar = function () {
+cargarCuenta= function () {
     
     mostrarComponente("divCuentas");
     ocultarComponente("divMovimientos");
@@ -22,6 +22,13 @@ cargar = function () {
 
 }
 
+cargarTransacciones=function(){
+    mostrarComponente("divTransacciones");
+    ocultarComponente("divCuentas");
+    ocultarComponente("divMovimientos");
+    deshabilitarComponente("btnDepositar");
+    deshabilitarComponente("btnRetirar");
+}
 
 /*
     En este archivo se deben colocar todas las funciones de cuentas, movimientos y transacciones
