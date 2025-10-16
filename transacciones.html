@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="BUSCAR" id="btnBuscar"/>
+                    <input type="button" value="BUSCAR" id="btnBuscar" onclick="ejecutarBusqueda();"/>
                 </div>
                 <div class="contenedorTexto">
                     <div class="etiquetaTexto">MONTO</div>
@@ -74,8 +74,8 @@
                     </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="DEPOSITAR" id="btnDepositar" />
-                    <input type="button" value="RETIRAR" id="btnRetirar"/>
+                    <input type="button" value="DEPOSITAR" id="btnDepositar" onclick="ejecutarDeposito();" />
+                    <input type="button" value="RETIRAR" id="btnRetirar" onclick="ejecutarRetiro();"/>
                     <div id="txtNumeroCuentaExistente"></div>
                     <div id="txtNombreCuenta"></div>
                     <div id="txtCedulaCuenta"></div>

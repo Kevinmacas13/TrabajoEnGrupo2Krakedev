@@ -43,12 +43,14 @@ ejecutarBusqueda=function(){
     habilitarComponente("btnDepositar");
     habilitarComponente("btnRetirar");
 }
+
 mostarInfo=function(){
     mostrarTextoEnCaja("txtNumeroCuentaExistente",cuentaEncontrada.numeroCuenta);
     mostrarTextoEnCaja("txtNombreCuenta",cuentaEncontrada.nombre+" "+cuentaEncontrada.apellido);
     mostrarTextoEnCaja("txtCedulaCuenta",cuentaEncontrada.cedula);
     mostrarTextoEnCaja("txtSaldoCuenta",cuentaEncontrada.saldo);
 }
+
 depositar=function(numeroCuenta,monto){
     let cuentaAfectada=buscarCuenta(numeroCuenta)
     if(cuentaAfectada!=null){
@@ -59,31 +61,34 @@ depositar=function(numeroCuenta,monto){
 }
 
 ejecutarDeposito=function(){
-    //Toma el numero de cuenta ingresado en la caja de texto
-    //Toma el monto ingresado en la caja de texto
-    //invoca a depositar
-    //Muestra un mensaje TRANSACCION EXITOSA
-    //Muestra en pantalla el nuevo saldo de la cuenta
     let numeroCuenta=recuperarTexto("txtCuentaExistente");
     let monto=recuperarFloat("txtMonto");
     let resultado=depositar(numeroCuenta,monto);
-    alert("TRANSACCION EXITOSA");
-    mostarInfo();
+    if(resultado){
+        alert("TRANSACCION EXITOSA");
+        mostrarInfo();
+    }
 }
 
 retirar=function(numeroCuenta,monto){
-    let cuentaAfectada;
-    //invoca a buscarCuenta, guarda el resultado en la variable cuentaAfectada;
-    //Valida si la cuenta tiene el saldo suficiente para retirar el monto
-    //Si el saldo es suficiente,al saldo actual de la cuenta afectada, le resta el monto que recibe como parámetro
-    //Si el saldo no es suficiente, muestra un alert SALDO INSUFICIENTE
-    //Si logra retirar muestra un mensaje TRANSACCION EXITOSA y muestra en pantalla el nuevo saldo de la cuenta
+    let cuentaAfectada=buscarCuenta(numeroCuenta);
+    if(cuentaAfectada!=null){
+        if(cuentaAfectada.saldo>=monto){
+            cuentaAfectada.saldo=cuentaAfectada.saldo-monto;
+            return true;
+        }else{
+            alert("SALDO INSUFICIENTE");
+        }
+    }
+    return false;
 }
 
 ejecutarRetiro=function(){
-    //Toma el numero de cuenta ingresado en la caja de texto
-    //Toma el monto ingresado en la caja de texto
-    //invoca a depositar
-    //Muestra un mensaje TRANSACCION EXITOSA
-    //Muestra en pantalla el nuevo saldo de la cuenta
+    let numeroCuenta=recuperarTexto("txtCuentaExistente");
+    let monto=recuperarFloat("txtMonto");
+    let resultado=retirar(numeroCuenta,monto);
+    if(resultado){
+        alert("TRANSACCION EXITOSA");
+        mostrarInfo();
+    } 
 }
