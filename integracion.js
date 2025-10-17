@@ -14,7 +14,6 @@ movimientos = [
 ]
 
 cargarCuenta= function () {
-    
     mostrarComponente("divCuentas");
     ocultarComponente("divMovimientos");
     ocultarComponente("divTransacciones");
@@ -26,10 +25,12 @@ cargarTransacciones=function(){
     mostrarComponente("divTransacciones");
     ocultarComponente("divCuentas");
     ocultarComponente("divMovimientos");
-    deshabilitarComponente("btnDepositar");
-    deshabilitarComponente("btnRetirar");
-}
 
+}
+cargarMovimientos=function(){
+    mostrarComponente("divMovimientos");
+    ocultarComponente("divCuentas");
+    ocultarComponente("divTransacciones");}
 /*
     En este archivo se deben colocar todas las funciones de cuentas, movimientos y transacciones
     IMPORTANTE: NO DUPLICAR FUNCIONES, si existe una misma función en varios archivos,
@@ -219,6 +220,70 @@ ejecutarRetiro = function () {
     }
 }
 //OCULTAR Y MOSTRAR LOS DIVS, para que cada opción muestre solo su parte
+
+
+filtrarMovimientos = function (numeroCuenta) {
+  let movimientosCuenta = [];
+  //Se barre el arreglo de movimientos
+  for (let i = 0; i < movimientos.length; i++) {
+    //En cada iteración, verifica si el numero de cuenta del movimiento es igual al que recibe como parametro
+    let movimiento = movimientos[i];
+    if (movimiento.numeroCuenta == numeroCuenta) {
+      //En caso de serlo, agrega la cuenta al arreglo movimientosCuenta
+      movimientosCuenta.push(movimiento);
+    }
+  }
+  //Invoca a mostrarMovimientos, pasándole como parámetro movimientosCuenta
+  mostrarMovimientos(movimientosCuenta);
+};
+
+/*
+    Recibe un arreglo con los movimientos que va a mostrar en pantalla
+*/
+mostrarMovimientos = function (misMovimientos) {
+  //Muestra en pantalla una tabla con los movimientos que recibe en misMovimientos
+  let tabla =
+    '<table class="miTabla"><tr>' +
+    "<th>CUENTA</th>" +
+    "<th>MONTO</th>" +
+    "<th>OPERACIÓN</th>" +
+    "</tr>";
+  let movimientoModificado;
+  for (let i = 0; i < misMovimientos.length; i++) {
+    let movimiento = misMovimientos[i];
+    if (movimiento.tipo == "D") {
+      movimientoModificado = movimiento.monto * -1;
+    } else if (movimiento.tipo == "C") {
+      movimientoModificado = movimiento.monto;
+    }
+    tabla +=
+      "<tr><td>" +
+      movimiento.numeroCuenta +
+      "</td>" +
+      "<td>" +
+      movimientoModificado +
+      "</td>" +
+      "<td>" +
+      movimiento.tipo +
+      "</td>" +
+      "</tr>";
+  }
+  tabla += "</table>";
+  document.getElementById("tablaMovimientos").innerHTML = tabla;
+
+  //Columnas: NUMERO CUENTA, MONTO, TIPO
+  //Si ya pinta correctamente la tabla, hacer el siguiente cambio:
+  //Si el tipo es D(DEBITO), mostrar el monto en negativo (multiplicar por -1)
+  //Si el tipo es C(CREDITO), mostrar el monto en positivo (tal como está guardado)
+};
+
+verMovimientos = function () {
+  let numeroCuenta = recuperarTexto("txtCuenta");
+  filtrarMovimientos(numeroCuenta);
+};
+
+
+
 
 
 //Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
