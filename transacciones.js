@@ -96,3 +96,15 @@ ejecutarRetiro=function(){
         mostrarTexto("txtSaldoCuenta",cuentaActualizada.saldo);
     } 
 }
+
+filtrarMovimientos = function (numeroCuenta) {
+  let movimientosCuenta = [];
+  for (let i = 0; i < movimientos.length; i++) {
+    let movimiento = movimientos[i];
+    if (movimiento.numeroCuenta == numeroCuenta) {
+      movimientosCuenta.push(movimiento);
+    }
+  }
+ 
+  mostrarMovimientos(movimientosCuenta);
+};
