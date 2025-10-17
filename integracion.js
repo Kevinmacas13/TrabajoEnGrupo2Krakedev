@@ -25,8 +25,10 @@ cargarTransacciones=function(){
     mostrarComponente("divTransacciones");
     ocultarComponente("divCuentas");
     ocultarComponente("divMovimientos");
-
+    deshabilitarComponente("btnDepositar");
+    deshabilitarComponente("btnRetirar");
 }
+
 cargarMovimientos=function(){
     mostrarComponente("divMovimientos");
     ocultarComponente("divCuentas");
@@ -174,6 +176,12 @@ depositar = function (numeroCuenta, monto) {
     let cuentaAfectada = buscarCuenta(numeroCuenta)
     if (cuentaAfectada != null) {
         cuentaAfectada.saldo = cuentaAfectada.saldo + monto;
+        let movimiento = {
+            numeroCuenta: numeroCuenta,
+            monto: monto,
+            tipo: "C"
+        };
+        movimientos.push(movimiento);
         return true;
     }
     return false;
@@ -198,6 +206,12 @@ retirar = function (numeroCuenta, monto) {
     if (cuentaAfectada != null) {
         if (cuentaAfectada.saldo >= monto) {
             cuentaAfectada.saldo = cuentaAfectada.saldo - monto;
+            let movimiento={
+                numeroCuenta:numeroCuenta,
+                monto:monto,
+                tipo:"D"
+            };
+            movimientos.push(movimiento);
             return true;
         } else {
             alert("SALDO INSUFICIENTE");
